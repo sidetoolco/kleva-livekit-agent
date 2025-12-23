@@ -26,11 +26,6 @@ export async function GET(request: NextRequest) {
     canSubscribe: true,
   });
 
-  // Add room attributes to enable agent dispatch
-  at.attributes = {
-    'lk.agent.dispatch': 'true',
-  };
-
   const token = await at.toJwt();
 
   return NextResponse.json({ token, url: process.env.NEXT_PUBLIC_LIVEKIT_URL });
