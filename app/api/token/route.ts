@@ -26,6 +26,13 @@ export async function GET(request: NextRequest) {
     canSubscribe: true,
   });
 
+  // Add metadata to request agent dispatch
+  at.metadata = JSON.stringify({
+    agent_dispatch: {
+      agent_name: 'vana_agent',
+    },
+  });
+
   const token = await at.toJwt();
 
   return NextResponse.json({ token, url: process.env.NEXT_PUBLIC_LIVEKIT_URL });

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LiveKitRoom, RoomAudioRenderer, useVoiceAssistant, BarVisualizer, VoiceAssistant } from '@livekit/components-react';
+import { LiveKitRoom, RoomAudioRenderer, useVoiceAssistant, BarVisualizer } from '@livekit/components-react';
 import '@livekit/components-styles';
 
 function VoiceAssistantUI() {
@@ -88,7 +88,6 @@ export default function Home() {
             }}
             className="flex flex-col items-center justify-center"
           >
-            <VoiceAssistant />
             <VoiceAssistantUI />
             <RoomAudioRenderer />
             
