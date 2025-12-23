@@ -37,8 +37,20 @@ export default function Home() {
   const connectToRoom = async () => {
     setConnecting(true);
     try {
-      const response = await fetch(`/api/token?roomName=${Date.now()}&participantName=user-${Date.now()}`);
+      const roomName = `${Date.now()}`;
+      const participantName = `user-${Date.now()}`;
+      
+      // Get token
+      const response = await fetch(`/api/token?roomName=${roomName}&participantName=${participantName}`);
       const data = await response.json();
+      
+      // Dispatch agent to room
+      await fetch('/api/dispatch-agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ roomName }),
+      });
+      
       setToken(data.token);
     } catch (error) {
       console.error('Failed to get token:', error);
