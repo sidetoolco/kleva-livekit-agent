@@ -26,12 +26,10 @@ export async function GET(request: NextRequest) {
     canSubscribe: true,
   });
 
-  // Add metadata to request agent dispatch
-  at.metadata = JSON.stringify({
-    agent_dispatch: {
-      agent_name: 'vana_agent',
-    },
-  });
+  // Add room attributes to enable agent dispatch
+  at.attributes = {
+    'lk.agent.dispatch': 'true',
+  };
 
   const token = await at.toJwt();
 
